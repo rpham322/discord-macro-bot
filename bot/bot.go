@@ -16,7 +16,7 @@ import (
 
 // store bot api tokens
 var (
-	OpenNutrionixToken string
+	OpenNutritionixToken string
 	BotToken          string
 )
 
@@ -58,7 +58,7 @@ func newMessage(discord *discordgo.Session, message *discordgo.MessageCreate) {
 		return
 	}
 
-	// respond to messages
+	// switch to respond to messages
 	switch{
 		case strings.Contains(message.Content, "nutrition"):
 			discord.ChannelMessageSend(message.ChannelID, "I can help to find the nutrition facts!")
@@ -66,7 +66,7 @@ func newMessage(discord *discordgo.Session, message *discordgo.MessageCreate) {
 			discord.ChannelMessageSend(message.ChannelID, "Yes, I am here!")
 
 		case strings.Contains(message.Content, "!macro"):
-			currentMacro := getCurrentMacro(message.content)
+			currentMacro := getNutrition(message.Content)
 			discord.ChannelMessageSendComplex(message.ChannelID, currentMacro)
 			
 
