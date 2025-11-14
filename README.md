@@ -38,7 +38,12 @@ NUTRITIONIX_TOKEN=your_nutritionix_token_here
 
 4. Build the bot:
 ```bash
-go build -o discord-macro-bot
+go build -o discord-macro-bot cmd/main.go
+```
+
+Or build from the root (Go will find main.go automatically):
+```bash
+go build -o discord-macro-bot ./cmd
 ```
 
 5. Run the bot:
@@ -48,7 +53,7 @@ go build -o discord-macro-bot
 
 Or run directly with Go:
 ```bash
-go run main.go
+go run cmd/main.go
 ```
 
 ## Configuration
@@ -144,14 +149,34 @@ When you use `!macro chicken breast`, the bot will respond with an embed showing
 
 ```
 discord-macro-bot/
-├── bot/
-│   ├── bot.go              # Main bot logic and message handlers
-│   └── command-macro.go    # Nutrition API integration
-├── main.go                 # Entry point and configuration
+├── cmd/
+│   └── main.go             # Application entry point
+├── internal/
+│   ├── bot/
+│   │   └── bot.go          # Bot core logic and lifecycle
+│   ├── commands/
+│   │   └── macro.go        # Macro command handler
+│   ├── api/
+│   │   └── nutritionix.go # Nutritionix API client
+│   ├── handlers/
+│   │   └── message.go      # Discord message routing
+│   └── config/
+│       └── config.go       # Configuration management
 ├── go.mod                  # Go module dependencies
 ├── go.sum                  # Dependency checksums
 └── README.md              # This file
 ```
+
+### Architecture
+
+The project follows a clean architecture pattern:
+- **`cmd/`** - Application entry points
+- **`internal/`** - Private application code (not importable by other projects)
+  - **`bot/`** - Bot initialization and lifecycle management
+  - **`commands/`** - Command handlers (e.g., `!macro`)
+  - **`api/`** - External API clients (Nutritionix)
+  - **`handlers/`** - Discord event handlers
+  - **`config/`** - Configuration loading and validation
 
 ## Dependencies
 
