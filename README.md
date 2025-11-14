@@ -77,6 +77,60 @@ These can be set in a `.env` file (recommended) or as system environment variabl
 - **`nutrition`** - Bot responds with a help message
 - **`bot`** - Bot confirms its presence
 
+## Query Best Practices & Limitations
+
+### What Works Well
+
+The Nutritionix API works best with:
+
+- **Common Western foods**: Pizza, burgers, chicken breast, rice, pasta, etc.
+- **Branded products**: "Coca Cola", "McDonald's Big Mac", "Oreo cookies"
+- **Standard measurements**: Include serving sizes for better accuracy
+  - `!macro 1 cup of rice`
+  - `!macro 200g chicken breast`
+  - `!macro 2 slices of bread`
+- **Restaurant items**: Many chain restaurant items are in the database
+  - `!macro Chipotle burrito bowl`
+  - `!macro Starbucks grande latte`
+
+### Known Limitations
+
+⚠️ **Asian and International Foods**: The Nutritionix database has limited coverage for:
+- Traditional Asian dishes (kimchi, pho, dim sum, etc.)
+- Regional or ethnic specialty foods
+- Homemade or custom recipes
+- Less common international cuisines
+
+### Tips for Better Results
+
+1. **Be Specific**: Include serving sizes and measurements
+   - ✅ `!macro 1 cup cooked white rice`
+   - ❌ `!macro rice`
+
+2. **Use Common Names**: Try English/common names instead of native names
+   - ✅ `!macro steamed dumplings`
+   - ❌ `!macro xiaolongbao`
+
+3. **Break Down Complex Dishes**: Query individual components
+   - Instead of: `!macro pad thai`
+   - Try: `!macro rice noodles` and `!macro shrimp` separately
+
+4. **Try Generic Descriptions**: Use descriptive terms
+   - ✅ `!macro stir fried vegetables`
+   - ✅ `!macro grilled chicken`
+   - ✅ `!macro steamed rice`
+
+5. **Include Brand Names**: If you know the brand, include it
+   - ✅ `!macro Trader Joe's kimchi`
+   - ❌ `!macro kimchi`
+
+### Workarounds for Missing Foods
+
+If a food isn't found in the database, consider:
+- Searching for similar/common alternatives
+- Breaking down the dish into individual ingredients
+- Using generic descriptions (e.g., "stir fried chicken" instead of "kung pao chicken")
+
 ## Example Output
 
 When you use `!macro chicken breast`, the bot will respond with an embed showing:
