@@ -53,7 +53,6 @@ func (b *Bot) Start() error {
 	if err := discord.Open(); err != nil {
 		return fmt.Errorf("Failed to open Discord session: %w", err)
 	}
-	defer discord.Close()
 
 	log.Println("Bot is running... Press CTRL-C to exit.")
 
@@ -63,6 +62,12 @@ func (b *Bot) Start() error {
 	<-sc
 
 	log.Println("Bot is shutting down...")
+	
+	// Close Discord session cleanly
+	if err := discord.Close(); err != nil {
+		log.Printf("Error closing Discord session: %v", err)
+	}
+	
 	return nil
 }
 
