@@ -41,7 +41,7 @@ func (h *MessageHandler) Handle(s *discordgo.Session, m *discordgo.MessageCreate
 
 	// Handle keyword triggers (simple responses)
 	switch {
-	case strings.Contains.tolowercase(content, "nutrition"):
+	case strings.Contains(content, "nutrition"):
 		s.ChannelMessageSend(m.ChannelID, "I can help you find nutrition facts! Use `!macro <food>` to get started.")
 	case strings.Contains(content, "bot") && !strings.Contains(content, "robot") && !strings.Contains(content, "bottle"):
 		// More specific matching to avoid false positives
