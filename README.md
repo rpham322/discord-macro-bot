@@ -171,7 +171,7 @@ discord-macro-bot/
 
 The project follows a clean architecture pattern:
 - **`cmd/`** - Application entry points
-- **`internal/`** - Private application code (not importable by other projects)
+- **`internal/`** - Application code 
   - **`bot/`** - Bot initialization and lifecycle management
   - **`commands/`** - Command handlers (e.g., `!macro`)
   - **`api/`** - External API clients (Nutritionix)
